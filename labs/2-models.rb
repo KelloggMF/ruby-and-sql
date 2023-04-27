@@ -70,6 +70,16 @@ george = Salesperson.find_by({"first_name" => "George"})
 puts "Salespeople: #{Salesperson.all.count}"
 puts abe["first_name"] + " " + abe["last_name"]
 puts george["first_name"] + " " + george["last_name"]
+
+# more efficient way to do the names, with loops
+all_salespeople = Salesperson.all
+for salesperson in all_salespeople
+    first_name = salesperson["first_name"]
+    last_name = salesperson["last_name"]
+    puts "#{first_name} #{last_name}"
+end
+
+
 # ---------------------------------
 # Salespeople: 2
 # Ben Block
