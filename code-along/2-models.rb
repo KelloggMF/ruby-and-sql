@@ -5,7 +5,7 @@
 
 # **************************
 # DON'T CHANGE OR MOVE
-Company.destroy_all
+Company.destroy_all # delete all rows in companies (just data, not table)
 # **************************
 
 # - Insert, read, update, and delete rows in companies table
@@ -14,14 +14,70 @@ Company.destroy_all
 # 1a. check out the schema file
 # 1b. check out the model file
 
+puts "There are #{Company.all.count} companies"
+
 # 2. insert new rows in companies table
+new_company = Company.new
+
+puts new_company.inspect
+
+new_company["name"] = "Apple"
+new_company["city"] = "Cupertino"
+new_company["state"] = "CA"
+new_company["url"] = "https://www.apple.com"
+new_company.save # inserts into the table
+
+puts new_company.inspect
+
+puts "There are #{Company.all.count} companies"
+
+company2 = Company.new
+company2["name"] = "Amazon"
+company2["city"] = "Seattle"
+company2["state"] = "WA"
+company2.save
+
+puts "There are #{Company.all.count} companies"
+
+company3 = Company.new
+company3["name"] = "Twitter"
+company3["city"] = "San Francisco"
+company3["state"] = "CA"
+company3.save
+
+puts "There are #{Company.all.count} companies"
 
 # 3. query companies table to find all row with California company
 
+all_companies = Company.all
+puts all_companies.inspect
+
+cali_companies = Company.where({"state" => "CA"}) # hashrocket; can add other frameworks here with comma
+puts cali_companies.inspect
+
+puts "CA companies: #{cali_companies.count}"
+
 # 4. query companies table to find single row for Apple
 
+apple = Company.find_by({"name" => "Apple"}) # when you know you just want one item in the array
+puts apple.inspect
+
 # 5. read a row's column value
+puts apple["url"]
 
 # 6. update a row's column value
+amazon = Company.find_by({"name" => "Amazon"})
+puts amazon["url"]
+amazon["url"] = "https://www.amazon.com"
+amazon.save # update row in table
+puts amazon["url"]
+
+#can do a Company.update_all({"current state" => "whatever"})
 
 # 7. delete a row
+
+twitter = Company.find_by(({"name" => "Twitter"}))
+twitter.destroy
+
+
+puts "There are #{Company.all.count} companies"
