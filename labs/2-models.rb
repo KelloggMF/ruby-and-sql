@@ -51,14 +51,25 @@ puts "There are #{Salesperson.all.count} salespeople"
 
 # 3. write code to display how many salespeople rows are in the database
 
+puts "Salespeople: #{Salesperson.all.count}"
+
 # ---------------------------------
 # Salespeople: 2
 
 # 4. modify/update column data for a row in the salespeople table.
+abe = Salesperson.find_by({"first_name" => "Abe"})
+puts abe["email"]
+abe["email"] = "honest@whitehouse.gov"
+abe.save # update row in table
+puts abe["email"]
 
 # CHALLENGE:
 # 5. write code to display each salesperson's full name
+george = Salesperson.find_by({"first_name" => "George"})
 
+puts "Salespeople: #{Salesperson.all.count}"
+puts abe["first_name"] + " " + abe["last_name"]
+puts george["first_name"] + " " + george["last_name"]
 # ---------------------------------
 # Salespeople: 2
 # Ben Block
